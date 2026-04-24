@@ -1,0 +1,5 @@
+
+train: YOLO_HAND/TRAIN/images/
+val: YOLO_HAND/TEST/images/
+nc: 1
+names: ['face']

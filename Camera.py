@@ -1,62 +1,64 @@
 import tensorflow as tf
+import cv2
+import numpy as np
+import ultralytics
+from ultralytics import YOLO
+import os
 
+# Determinism
 tf.keras.utils.set_random_seed(30)
 tf.config.experimental.enable_op_determinism()
 
-from tensorflow.keras import datasets
-import tensorflow as tf
-from tensorflow.keras import layers, models
-import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
 
-model_save = tf.keras.models.load_model("sign_language_model.keras")
+# Load your model
+model = tf.keras.models.load_model("sign_language_model.keras")
 
-import cv2
-
-"""0 means the default webcam."""
-
+# Labels
 labels = [
-'A','B','C','D','E','F','G','H','I',
-'K','L','M','N','O','P','Q','R','S',
-'T','U','V','W','X','Y'
+    'A','B','C','D','E','F','G','H','I',
+    'K','L','M','N','O','P','Q','R','S',
+    'T','U','V','W','X','Y'
 ]
 
+# Webcam
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
-if not cap.isOpened():
-    print("Error: Could not open video stream or file")
-else:
-    while True:
-        ret, frame = cap.read()
+while True:
 
-        if not ret:
-            print("Error: Failed to capture frame. Exiting...")
-            break
+    ret, frame = cap.read()
 
-        #preprocess camera data so model can read
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    if not ret:
+        break
 
-        resized = cv2.resize(gray, (28, 28))
+    # Rectangle coordinates
+    x1, y1 = 200, 200
+    x2, y2 = 400, 400
 
-        img = resized.astype("float32") / 255.0
-        img = np.expand_dims(img, axis=-1)
-        img = np.expand_dims(img, axis=0)
+    # Draw rectangle on screen
+    cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
 
-        prediction = model_save.predict(img, verbose=0)
-        pred_class = np.argmax(prediction)
+    # Extract region of interest
+    roi = frame[y1:y2, x1:x2]
+    gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+    blur = cv2.GaussianBlur(gray, (5, 5), 0)
 
-        letter = labels[pred_class]
+    digit = cv2.resize(blur, (28, 28))
+    digit = digit / 255.0
+    digit = digit.reshape(1, 28,28,1)
 
-        cv2.putText(frame, letter, (50,50),
-                    cv2.FONT_HERSHEY_SIMPLEX,
-                    1, (0,255,0), 2)
+    prediction = model.predict(digit, verbose=0)
+    digit_class = np.argmax(prediction)
+    confidence = np.max(prediction)
 
-        cv2.imshow("Hand Sign Detection", frame)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+    print(labels[digit_class])
+
+    cv2.imshow("CAMERA", frame)
+    cv2.imshow("ead", blur)
+
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 
 cap.release()
 cv2.destroyAllWindows()
-

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>images</folder>
+	<filename>Skin_148.jpg</filename>
+	<path>./annotations/images\Skin_148.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>779</width>
+		<height>613</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>hand</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>219</xmin>
+			<ymin>400</ymin>
+			<xmax>302</xmax>
+			<ymax>492</ymax>
+		</bndbox>
+	</object>
+</annotation>

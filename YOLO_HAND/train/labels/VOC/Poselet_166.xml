@@ -1,0 +1,26 @@
+<annotation>
+	<folder>images</folder>
+	<filename>Poselet_166.jpg</filename>
+	<path>./annotations/images\Poselet_166.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>768</width>
+		<height>1024</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>hand</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>348</xmin>
+			<ymin>663</ymin>
+			<xmax>540</xmax>
+			<ymax>806</ymax>
+		</bndbox>
+	</object>
+</annotation>
