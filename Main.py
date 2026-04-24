@@ -54,7 +54,7 @@ while True:
     print(labels[digit_class])
 
     cv2.imshow("CAMERA", frame)
-    cv2.imshow("ead", blur)
+    cv2.imshow("AI_FEED", blur)
 
 
     if cv2.waitKey(1) & 0xFF == ord('q'):

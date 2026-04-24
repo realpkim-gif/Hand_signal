@@ -36,17 +36,6 @@ unique_labels = np.unique(y_train)
 x_train = train_df.values.reshape(-1,28,28,1).astype("float32") / 255.0
 x_test = test_df.values.reshape(-1,28,28,1).astype("float32") / 255.0
 
-print(unique_labels)
-
-print(y_train)
-
-print(x_train.shape)
-print(y_train.shape)
-print(x_test.shape)
-print(y_test.shape)
-
-print(x_train.dtype)
-print(np.max(x_train))
 
 """END OF DATA PREPROCESSING"""
 

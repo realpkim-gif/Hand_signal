@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Hand_signal.iml" filepath="$PROJECT_DIR$/.idea/Hand_signal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Yolo_Hand_Signals.iml" filepath="$PROJECT_DIR$/.idea/Yolo_Hand_Signals.iml" />
     </modules>
   </component>
 </project>

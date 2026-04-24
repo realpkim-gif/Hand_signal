@@ -8,7 +8,7 @@ import os
 
 image_dir = "YOLO_HAND/TRAIN/images/"
 csv_path = "YOLO_HAND/TRAIN/LABELS/YOLO"
-output_dir = "data_yaml.yaml"
+output_dir = "Yolo_Data.yaml"
 
 
 train_images_dir = "YOLO_HAND/TRAIN/images/"
